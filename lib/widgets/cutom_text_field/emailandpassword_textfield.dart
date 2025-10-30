@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class EmailandPasswordTextfield extends StatefulWidget {
   TextEditingController controller = TextEditingController();
   bool isPassword;
-  EmailandPasswordTextfield({super.key, required controller, this.isPassword = false, });
+  EmailandPasswordTextfield({super.key, required this.controller, this.isPassword = false,});
 
   @override
   State<EmailandPasswordTextfield> createState() => _EmailTextfieldState();

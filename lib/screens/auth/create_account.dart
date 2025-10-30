@@ -40,6 +40,7 @@ class _CreateAccountState extends State<CreateAccount> {
     emailController.dispose();
     passwordController.dispose();
     usernameController.dispose();
+    phoneNumberController.dispose();
   }
 
   @override
@@ -124,12 +125,30 @@ class _CreateAccountState extends State<CreateAccount> {
                       10.height,
                       ConfirmationButton(
                         onPressed: () async {
-                          if (!context.mounted) return; 
-                          await _auth.createUserwithEmailandPassword(
-                            emailController.text.trim(),
-                            passwordController.text.trim(),
+                          try {
+                            await _auth.createUserwithEmailandPassword(
+                              emailController.text.trim(),
+                              passwordController.text.trim(),
+                            );
+                            if (!context.mounted) return;
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Account created successfully"),
+                              ),
+                            );
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: Colors.red,
+                                content: Text("Error: $e"),
+                              ),
+                            );
+                          }
+                         await  _user.getUserDetails(
+                            usernameController.text.trim(),
+                            phoneNumberController.text.trim(),
+                    
                           );
-                      
                         },
                         text: "Done",
                       ),
@@ -137,7 +156,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       Center(
                         child: GestureDetector(
                           onTap: () {
-                            //implement todo functionality
+                            //implement todo
                           },
                           child: Text(
                             "Cancel",

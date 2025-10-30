@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class UsernameTextfield extends StatefulWidget {
   TextEditingController controller = TextEditingController();
   
-  UsernameTextfield({super.key, required controller});
+  UsernameTextfield({super.key, required this.controller});
 
   @override
   State<UsernameTextfield> createState() => _EmailTextfieldState();

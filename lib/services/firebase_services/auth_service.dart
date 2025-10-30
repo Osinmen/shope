@@ -5,14 +5,19 @@ class AuthService {
   //create account logic
 
   Future<void> createUserwithEmailandPassword(
-    String email,
-    String password,
-  ) async {
+    String email, String password,) async {
     try {
-      final UserCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      print("firebase c all completed");
     } on FirebaseAuthException catch (e) {
-      print("this is not working ${e.message}");
+      if (e.code == "weak-password") {
+        print("password is too weak ");
+      } else if (e.code == "invalid-email") {
+        print("email is invalid");
+      }
     }
   }
 
@@ -22,12 +27,12 @@ class AuthService {
     String email,
     String password,
   ) async {
-   try {
-     final userCredential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
-   } on FirebaseAuthException catch(e) {
-    print(e.message);
-   }
+    try {
+      final userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
   }
 
   //log out logic
@@ -38,5 +43,4 @@ class AuthService {
       print("$e");
     }
   }
-
 }

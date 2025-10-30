@@ -4,7 +4,7 @@ import 'package:shope/core/constants/app_text_style.dart';
 
 class ConfirmationButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+final VoidCallback onPressed;
   const ConfirmationButton({super.key, required this.onPressed, required this.text});
 
   @override
