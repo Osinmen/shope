@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shope/core/constants/app_colors.dart';
+import 'package:shope/core/utils/sized_box_extensions.dart';
 import 'package:shope/gen/assets.gen.dart';
 import 'package:shope/widgets/page_curves/hello_curves/hello_curves.dart';
 
@@ -22,74 +23,73 @@ class _HelloScreenState extends State<HelloScreen> {
                 size: Size(256, 320), 
                 painter: HelloCurves(),
             ), 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Center(
-                child: Card(
-                  
-                elevation: 4,
-                color: AppColors.whiteColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Container(
-
-                  width: 300,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage(Assets.images.happyGirl.path), fit: BoxFit.contain),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-          
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-            
-                      Container(
-                        height: 350 ,
-                        decoration: BoxDecoration(
-                       
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: SizedBox(
+                  height: 500,
+                  width: double.infinity,
+                  child: Card(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 7,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(Assets.images.happyGirl.path),
+                                fit: BoxFit.cover,
+                              ),
+                              color: Colors.red,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                            ),
                           ),
                         ),
-                       
-                      ),
-                      // Content section
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 70),
-                        child: Column(
-                          children: [
-                            const Text(
-                              'Hello',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 35),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Hello",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                ),
                               ),
+                              20.height,
+                               Text(
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consectetur turpis. Morbi eu eleifend lacus.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              height: 1.5,
+                              color: Colors.grey[700],
                             ),
-                            const SizedBox(height: 12),
-                            Text(
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consectetur turpis. Morbi eu eleifend lacus.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 14,
-                                height: 1.5,
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                          ],
+                          ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
                     ],
                   ),
                 ),
-                            ),
-              )
-            )
-          ],
-        ),
-      ),
-    );
+                      
+            
+        
+      
+        );
   }
 }
