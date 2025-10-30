@@ -22,10 +22,22 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [uploadPhoto];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/happyGirl.png
+  AssetGenImage get happyGirl =>
+      const AssetGenImage('assets/images/happyGirl.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [happyGirl];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

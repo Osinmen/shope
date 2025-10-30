@@ -18,6 +18,8 @@ dependencies:
   firebase_auth: ^6.1.1
   firebase_storage: ^13.0.3
   cloud_firestore: ^6.0.3
+  build_runner: ^2.10.1
+  flutter_gen_runner: ^5.12.0
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +31,7 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/images/
 
   fonts:
     - family: Raleway

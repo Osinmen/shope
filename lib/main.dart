@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:shope/providers/image_provider.dart';
 import 'package:shope/screens/auth/create_account.dart';
 import 'package:shope/screens/auth/login.dart';
+import 'package:shope/screens/home/hello_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const CreateAccount(),
+      home: const HomeScreen(),
     );
   }
 }
