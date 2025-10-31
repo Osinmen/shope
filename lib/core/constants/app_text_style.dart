@@ -13,7 +13,7 @@ class AppTextStyles {
 
   // 🖋️ Headings
   static TextStyle headingLarge([Color? color]) => const TextStyle(
-        fontFamily: 'Raleway',
+        fontFamily: 'Raleway_bold',
         fontSize: 28,
         fontWeight: FontWeight.bold,
       ).apply(color: color ?? Colors.black);
@@ -40,8 +40,8 @@ class AppTextStyles {
         fontWeight: FontWeight.w300,
       ).apply(color: color ?? Colors.white);
   static TextStyle bodySmallLight([Color? color]) => const TextStyle(
-        fontFamily: 'Raleway',
-        fontSize: 15,
-        fontWeight: FontWeight.w300,
+        fontFamily: 'Raleway_bold',
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
       ).apply(color: color ?? Colors.black);
 }
