@@ -13,4 +13,7 @@ class FontFamily {
 
   /// Font family: Raleway
   static const String raleway = 'Raleway';
+
+  /// Font family: Raleway_bold
+  static const String ralewayBold = 'Raleway_bold';
 }

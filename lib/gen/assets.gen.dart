@@ -18,8 +18,19 @@ class $AssetsIconsGen {
   AssetGenImage get uploadPhoto =>
       const AssetGenImage('assets/icons/Upload Photo.png');
 
+  /// File path: assets/icons/rectangular.png
+  AssetGenImage get rectangular =>
+      const AssetGenImage('assets/icons/rectangular.png');
+
+  /// File path: assets/icons/settings.png
+  AssetGenImage get settings =>
+      const AssetGenImage('assets/icons/settings.png');
+
+  /// File path: assets/icons/sort.png
+  AssetGenImage get sort => const AssetGenImage('assets/icons/sort.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [uploadPhoto];
+  List<AssetGenImage> get values => [uploadPhoto, rectangular, settings, sort];
 }
 
 class $AssetsImagesGen {
