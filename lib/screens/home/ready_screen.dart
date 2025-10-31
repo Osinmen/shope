@@ -53,7 +53,7 @@ class _ReadyScreenState extends State<ReadyScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 35),
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 28),
                           child: Column(
                             children: [
                               Text(
@@ -64,12 +64,23 @@ class _ReadyScreenState extends State<ReadyScreen> {
                                   fontSize: 30,
                                 ),
                               ),
-                              20.height,
+                              10.height,
                                Text(
                             'Lorem ipsum dolor sit amet,\n consectetur adispiscing elit',
                             textAlign: TextAlign.center,
                             style: AppTextStyles.bodyMediumLight(Colors.black)
                           ),
+                          10.height,
+                          ElevatedButton(
+                            onPressed: () {}, 
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 45),
+                              backgroundColor: AppColors.primaryColor, 
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)
+                              )
+                            ), child: Text("Let's Start", style: AppTextStyles.bodyLargeLight(Colors.white), ),)
                             ],
                           ),
                         ),
