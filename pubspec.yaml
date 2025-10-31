@@ -37,3 +37,8 @@ flutter:
     - family: Raleway
       fonts:
         - asset: fonts/Raleway-Light.ttf
+  
+ 
+    - family: Raleway_bold
+      fonts:
+        - asset: fonts\Raleway-Bold.ttf
