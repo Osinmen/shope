@@ -5,6 +5,7 @@ import 'package:shope/home_screen.dart';
 import 'package:shope/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shope/providers/image_provider.dart';
+import 'package:shope/providers/product_api_provider.dart';
 import 'package:shope/screens/auth/create_account.dart';
 import 'package:shope/screens/auth/login.dart';
 import 'package:shope/screens/home/full_profile.dart';
@@ -19,6 +20,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserImageProvider()),
+        ChangeNotifierProvider(create: (context) => ProductApiProvider()),
       ],
       child: const MyApp(),
     ),
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const FullProfile(),
+      home: const HomeScreen(),
     );
   }
 }

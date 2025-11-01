@@ -1,7 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shope/core/constants/app_colors.dart';
+import 'package:shope/core/constants/app_text_style.dart';
 import 'package:shope/core/utils/sized_box_extensions.dart';
 import 'package:shope/gen/assets.gen.dart';
+import 'package:shope/providers/product_api_provider.dart';
+import 'package:shope/services/api_services/api_services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,86 +24,60 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ApiServices().fetchProducts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    testing();
-                  },
-                  child: Text("Text"),
-                ),
-              ],
-            ),
-          ),
-
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: SizedBox(
-                height: 500,
-                width: double.infinity,
-                child: Card(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  elevation: 4,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(Assets.images.happyGirl.path),
-                              fit: BoxFit.cover,
-                            ),
-                            color: Colors.red,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                          ),
-                        ),
+      body: FutureBuilder(
+        future: context.read<ProductApiProvider>().fetchProduct(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator(color: AppColors.primaryColor));
+          } else if (snapshot.hasData) {
+            return Consumer<ProductApiProvider>(
+              builder: (context, value, child) {
+                final products = value.products;
+               return  ListView.builder(
+              itemCount: value.products.length,
+              itemBuilder: (context, index) {
+                final product = products[index];
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ListTile(
+                      title: Text(product.title.toString()),
+                      subtitle: Text(product.description.toString()),
+                      leading: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: NetworkImage(product.networkImageurl.toString()),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 35),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Hello",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30,
-                              ),
-                            ),
-                            20.height,
-                             Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consectetur turpis. Morbi eu eleifend lacus.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            height: 1.5,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ),
-          ),
-        ],
+                );
+              },
+            );
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Text(
+              "erro trying to get product refesh this page",
+              style: AppTextStyles.bodyMediumLight(),
+            );
+          } else {
+            return Text("some thing else is wron try to refresh this page");
+          }
+        },
       ),
     );
   }

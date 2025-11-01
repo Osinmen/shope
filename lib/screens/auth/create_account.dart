@@ -48,6 +48,9 @@ class _CreateAccountState extends State<CreateAccount> {
     // TODO: implement initState
 
     super.initState();
+    emailController;
+    passwordController;
+    
   }
 
   @override
