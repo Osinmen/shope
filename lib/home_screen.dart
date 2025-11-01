@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    ApiServices().fetchProducts();
+  Provider.of<ProductApiProvider>(context, listen: false).fetchProduct();
   }
 
   @override
