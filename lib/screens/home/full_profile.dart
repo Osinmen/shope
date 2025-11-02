@@ -8,6 +8,7 @@ import 'package:shope/core/utils/sized_box_extensions.dart';
 import 'package:shope/gen/assets.gen.dart';
 import 'package:shope/providers/product_api_provider.dart';
 import 'package:shope/services/api_services/api_services.dart';
+import 'package:shope/widgets/payment_status_tabs.dart';
 import 'package:shope/widgets/profile_full_widgets/description_container.dart';
 import 'package:shope/widgets/profile_full_widgets/row_widget.dart';
 import 'package:shope/widgets/random_widgets/some_container.dart';
@@ -39,13 +40,12 @@ class _FullProfileState extends State<FullProfile> {
     // TODO: implement initState
     super.initState();
     fetchUserName();
-      Future.microtask(() {
+    Future.microtask(() {
       return Provider.of<ProductApiProvider>(
         context,
         listen: false,
       ).fetchProducts();
     });
-    
   }
 
   @override
@@ -66,8 +66,12 @@ class _FullProfileState extends State<FullProfile> {
               10.height,
               DescriptionContainer(),
               10.height,
+              Text(
+                "Recently Viewed",
+                style: AppTextStyles.bodyMediumBold(Colors.black),
+              ),
               SizedBox(
-                height: 80,
+                height: 100,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: ListView.builder(
@@ -80,17 +84,19 @@ class _FullProfileState extends State<FullProfile> {
                         child: Card(
                           shape: CircleBorder(),
                           elevation: 7,
-                          child: Container(
-                            height: 70,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  recentlyViewed[index].networkImageurl
-                                      .toString(),
-                                    
+                          child: Padding(
+                            padding: const EdgeInsets.all(6),
+                            child: Container(
+                              height: 70,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    recentlyViewed[index].networkImageurl
+                                        .toString(),
+                                  ),
                                 ),
                               ),
                             ),
@@ -101,8 +107,24 @@ class _FullProfileState extends State<FullProfile> {
                   ),
                 ),
               ),
-              Text("My Orders"), 
+              Text(
+                "My Orders",
+                style: AppTextStyles.bodyMediumBold(Colors.black),
 
+              ),
+              10.height, 
+              Row(
+              
+                
+                children: [
+                  Expanded(child: PaymentStatusTabs(text: "To Pay", onPressed: () {})),
+                  8.width,
+
+                  Expanded(child: PaymentStatusTabs(text: ("To Receive"), onPressed: () {})), 
+                  8.width,
+                  Expanded(child: PaymentStatusTabs(text: "To Review", onPressed: () {}))
+                ],
+              ), 
             ],
           ),
         ),
