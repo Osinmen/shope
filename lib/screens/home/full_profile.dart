@@ -34,26 +34,28 @@ class _FullProfileState extends State<FullProfile> {
       });
     }
   }
- @override
-void initState() {
-  super.initState();
-  _initialize();
-}
 
-Future<void> _initialize() async {
-  await fetchUserName();
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
 
-  // Fetch products safely after build
-  Future.microtask(() {
-    final provider = context.read<ProductApiProvider>();
-    provider.fetchProducts();
-  });
-}
+  Future<void> _initialize() async {
+    await fetchUserName();
+
+    // Fetch products safely after build
+    Future.microtask(() {
+      final provider = context.read<ProductApiProvider>();
+      provider.fetchProducts();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProductApiProvider>(context);
     final recentlyViewed = provider.randomRecentlyViewed;
+    final newlyAddedItems = provider.newlyAddedItems;
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -62,9 +64,9 @@ Future<void> _initialize() async {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //hggffddsddff  hhl 
+                //hggffddsddff  hhl
                 RowWidget(),
-                15.height,//what fuck 
+                15.height, //what fuck
                 Text("Hello, $username!", style: AppTextStyles.headingLarge()),
                 10.height,
                 DescriptionContainer(),
@@ -118,7 +120,9 @@ Future<void> _initialize() async {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Expanded(child: PaymentStatusTabs(text: "Pay", onPressed: () {})),
+                    Expanded(
+                      child: PaymentStatusTabs(text: "Pay", onPressed: () {}),
+                    ),
                     8.width,
                     Expanded(
                       child: PaymentStatusTabs(
@@ -136,7 +140,78 @@ Future<void> _initialize() async {
                   ],
                 ),
                 20.height,
-                Text("Stories", style: AppTextStyles.bodyMediumBold(Colors.black),)
+                Text(
+                  "Stories",
+                  style: AppTextStyles.bodyMediumBold(Colors.black),
+                ),
+                10.height,
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    itemCount: 10,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return AspectRatio(
+                        aspectRatio: 14 / 20,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                20.height,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "New Items",
+                      style: AppTextStyles.bodyMediumBold(Colors.black),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "See All",
+                          style: AppTextStyles.bodySmallBold(Colors.black),
+                        ),
+                        10.width,
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primaryColor,
+                          ),
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: AppColors.whiteColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+
+                SizedBox(
+                  height: 100,
+                  width: 150,
+                  child: Card(
+                    color: Colors.white,
+                    elevation: 6.0,
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(12)
+                      )
+                    )
+                    ),
+                )
               ],
             ),
           ),
@@ -144,4 +219,5 @@ Future<void> _initialize() async {
       ),
     );
   }
+
 }

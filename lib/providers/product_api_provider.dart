@@ -34,4 +34,11 @@ class ProductApiProvider extends ChangeNotifier {
     return shuffled.take(8).toList();
   }
 
+  List<ProductModel> get newlyAddedItems {
+    if(_products.isEmpty) return [];
+    final random = Random();
+    final shuffled = List<ProductModel>.from(_products)..shuffle(random);
+    return shuffled.take(10).toList();
+  }
+
 }

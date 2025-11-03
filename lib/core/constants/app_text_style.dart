@@ -49,4 +49,10 @@ class AppTextStyles {
     fontSize: 21,
     fontWeight: FontWeight.bold,
   ).apply(color: color ?? Colors.white);
+
+   static TextStyle bodySmallBold([Color? color]) => const TextStyle(
+    fontFamily: "Raleway_bold",
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+  ).apply(color: color ?? Colors.white);
 }
