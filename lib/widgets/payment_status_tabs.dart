@@ -12,12 +12,14 @@ class PaymentStatusTabs extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
         decoration: BoxDecoration(
           color: Colors.grey[200], 
           borderRadius: BorderRadius.circular(30), 
         ),
-        child: Center(child: Text(text, style: AppTextStyles.bodySmallLight(AppColors.primaryColor),)), 
+        child: Center(child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(text, style: AppTextStyles.bodySmallLight(AppColors.primaryColor),))), 
       ),
     );
   }

@@ -12,46 +12,43 @@ class RowWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-       Row(
-        children: [
- SizedBox(
-          height: 70,
-          width: 70,
-          child: Card(
-            elevation: 7,
-            shape: CircleBorder(),
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  shape: BoxShape.circle,
+        Row(
+          children: [
+            SizedBox(
+              height: 60,
+              width: 60,
+              child: Card(
+                elevation: 7,
+                shape: CircleBorder(),
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+            8.width,
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Text(
+                "My Activity",
+                style: TextStyle(color: Colors.white, fontSize: 15),
+              ),
+            ),
+          ],
         ),
-        10.width,
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-
-          decoration: BoxDecoration(
-            color: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Text(
-            "My Activity",
-            style: TextStyle(color: Colors.white, fontSize: 15),
-          ),
-        ),
-        ],
-       ),
-
         20.width,
-
         Row(
           children: [
             SomeContainer(imagePath: Assets.icons.rectangular.path),
@@ -65,59 +62,3 @@ class RowWidget extends StatelessWidget {
     );
   }
 }
-// class RowWidget extends StatelessWidget {
-//   const RowWidget({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         // SizedBox(
-//         //   height: 70,
-//         //   width: 70,
-//         //   child: Card(
-//         //     elevation: 7,
-//         //     shape: CircleBorder(),
-//         //     color: Colors.white,
-//         //     child: Padding(
-//         //       padding: const EdgeInsets.all(8),
-//         //       child: Container(
-//         //         height: 50,
-//         //         width: 50,
-//         //         decoration: BoxDecoration(
-//         //           color: Colors.blue,
-//         //           shape: BoxShape.circle,
-//         //         ),
-//         //       ),
-//         //     ),
-//         //   ),
-//         // ),
-// //         Container(
-// //           padding: const EdgeInsets.symmetric(
-// //             vertical: 15,
-// //             horizontal: 25,
-// //           ),
-        
-// //           decoration: BoxDecoration(
-// //             color: AppColors.primaryColor,
-// //             borderRadius: BorderRadius.circular(30),
-// //           ),
-// //           child: Text(
-// //             "My Activity",
-// //             style: TextStyle(color: Colors.white, fontSize: 15),
-// //           ),
-// //         ),
-// //         Expanded(
-// //           child: Row(
-// //          
-// //             children: [
-// //               SomeContainer(imagePath: Assets.icons.rectangular.path),
-// //               SomeContainer(imagePath: Assets.icons.sort.path),
-// //               SomeContainer(imagePath: Assets.icons.settings.path),
-// //             ],
-// //           ),
-// //         ),
-// //       ],
-// //     );
-// //   }
-// // }

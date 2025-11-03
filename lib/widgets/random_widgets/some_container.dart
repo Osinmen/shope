@@ -9,8 +9,8 @@ class SomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45,
-      width: 45,
+      height: 40,
+      width: 40,
       decoration: BoxDecoration(
         color: Colors.grey[200], 
        shape: BoxShape.circle, 

@@ -116,21 +116,20 @@ Future<void> _initialize() async {
                 ),
                 10.height,
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Expanded(
-                      child: PaymentStatusTabs(text: "To Pay", onPressed: () {}),
-                    ),
+                    Expanded(child: PaymentStatusTabs(text: "Pay", onPressed: () {})),
                     8.width,
                     Expanded(
                       child: PaymentStatusTabs(
-                        text: ("To Receive"),
+                        text: ("Receive"),
                         onPressed: () {},
                       ),
                     ),
                     8.width,
                     Expanded(
                       child: PaymentStatusTabs(
-                        text: "To Review",
+                        text: "Review",
                         onPressed: () {},
                       ),
                     ),

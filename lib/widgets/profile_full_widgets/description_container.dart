@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shope/core/constants/app_colors.dart';
 import 'package:shope/core/constants/app_text_style.dart';
+import 'package:shope/core/utils/sized_box_extensions.dart';
 
 class DescriptionContainer extends StatelessWidget {
   const DescriptionContainer({super.key});
@@ -17,6 +18,7 @@ class DescriptionContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Announcement", style: AppTextStyles.bodySmallLight()),
+          2.height,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -24,11 +26,16 @@ class DescriptionContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing "),
-                    Text("elit. Maecenas hendrerit luctus libero ac vulputate."),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing ")),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text("elit. Maecenas hendrerit luctus libero ac vulputate.")),
                   ],
                 ),
               ),
+              5.width,
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
