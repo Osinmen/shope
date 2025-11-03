@@ -34,19 +34,21 @@ class _FullProfileState extends State<FullProfile> {
       });
     }
   }
+ @override
+void initState() {
+  super.initState();
+  _initialize();
+}
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    fetchUserName();
-    Future.microtask(() {
-      return Provider.of<ProductApiProvider>(
-        context,
-        listen: false,
-      ).fetchProducts();
-    });
-  }
+Future<void> _initialize() async {
+  await fetchUserName();
+
+  // Fetch products safely after build
+  Future.microtask(() {
+    final provider = context.read<ProductApiProvider>();
+    provider.fetchProducts();
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -56,76 +58,88 @@ class _FullProfileState extends State<FullProfile> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //first row at the top of the page
-              RowWidget(),
-              15.height,
-              Text("Hello, $username!", style: AppTextStyles.headingLarge()),
-              10.height,
-              DescriptionContainer(),
-              10.height,
-              Text(
-                "Recently Viewed",
-                style: AppTextStyles.bodyMediumBold(Colors.black),
-              ),
-              SizedBox(
-                height: 100,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: ListView.builder(
-                    itemCount: recentlyViewed.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return SizedBox(
-                        height: 70,
-                        width: 70,
-                        child: Card(
-                          shape: CircleBorder(),
-                          elevation: 7,
-                          child: Padding(
-                            padding: const EdgeInsets.all(6),
-                            child: Container(
-                              height: 70,
-                              width: 70,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    recentlyViewed[index].networkImageurl
-                                        .toString(),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //hggffddsddff  hhl 
+                RowWidget(),
+                15.height,//what fuck 
+                Text("Hello, $username!", style: AppTextStyles.headingLarge()),
+                10.height,
+                DescriptionContainer(),
+                10.height,
+                Text(
+                  "Recently Viewed",
+                  style: AppTextStyles.bodyMediumBold(Colors.black),
+                ),
+                SizedBox(
+                  height: 100,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: ListView.builder(
+                      itemCount: recentlyViewed.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: Card(
+                            shape: CircleBorder(),
+                            elevation: 7,
+                            child: Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                      recentlyViewed[index].networkImageurl
+                                          .toString(),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                "My Orders",
-                style: AppTextStyles.bodyMediumBold(Colors.black),
-
-              ),
-              10.height, 
-              Row(
-              
-                
-                children: [
-                  Expanded(child: PaymentStatusTabs(text: "To Pay", onPressed: () {})),
-                  8.width,
-
-                  Expanded(child: PaymentStatusTabs(text: ("To Receive"), onPressed: () {})), 
-                  8.width,
-                  Expanded(child: PaymentStatusTabs(text: "To Review", onPressed: () {}))
-                ],
-              ), 
-            ],
+                Text(
+                  "My Orders",
+                  style: AppTextStyles.bodyMediumBold(Colors.black),
+                ),
+                10.height,
+                Row(
+                  children: [
+                    Expanded(
+                      child: PaymentStatusTabs(text: "To Pay", onPressed: () {}),
+                    ),
+                    8.width,
+                    Expanded(
+                      child: PaymentStatusTabs(
+                        text: ("To Receive"),
+                        onPressed: () {},
+                      ),
+                    ),
+                    8.width,
+                    Expanded(
+                      child: PaymentStatusTabs(
+                        text: "To Review",
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                ),
+                20.height,
+                Text("Stories", style: AppTextStyles.bodyMediumBold(Colors.black),)
+              ],
+            ),
           ),
         ),
       ),

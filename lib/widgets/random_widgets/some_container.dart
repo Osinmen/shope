@@ -9,12 +9,13 @@ class SomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      height: 45,
+      width: 45,
       decoration: BoxDecoration(
         color: Colors.grey[200], 
        shape: BoxShape.circle, 
       ),
-      child: Image.asset(imagePath.toString())
+      child: Image.asset(imagePath.toString(), height: 20, width: 20,)
     );
   }
 }
