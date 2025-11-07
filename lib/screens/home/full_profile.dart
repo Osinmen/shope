@@ -196,22 +196,26 @@ class _FullProfileState extends State<FullProfile> {
                     ),
                   ],
                 ),
-
                 SizedBox(
-                  height: 100,
-                  width: 150,
+                  height: 150,
+                  width: 200,
                   child: Card(
-                    color: Colors.white,
-                    elevation: 6.0,
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(12)
-                      )
-                    )
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                )
+                    elevation: 7,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(6),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -219,5 +223,4 @@ class _FullProfileState extends State<FullProfile> {
       ),
     );
   }
-
 }
